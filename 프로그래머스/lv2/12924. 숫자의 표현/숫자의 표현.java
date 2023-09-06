@@ -7,15 +7,12 @@ class Solution {
         
         while(end<=n) {
             if (sum < n) {
-                end++;
-                sum += end;
+                sum += ++end;
             } else if (sum > n) {
-                sum -= start;
-                start++;
+                sum -= start++;
             } else {
                 count++;
-                end++;
-                sum += end;
+                sum += ++end;
             }
         }
 
