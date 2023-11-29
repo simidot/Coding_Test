@@ -1,18 +1,18 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Main{
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int[] intArray = new int[9];
-        for(int i=0; i<9; i++) {
-            intArray[i] = scanner.nextInt();
-        }
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int arr[] = new int[9];
+        int max = arr[0]; // 최댓값을 담을 변수
+        int index = 0; // 최댓값의 위치를 담는 변수
 
-        int max = intArray[0];
-        int index = 1;
-        for (int i=0; i<intArray.length; i++) {
-            if (max<intArray[i]) {
-                max = intArray[i];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            if (max < arr[i]) {
+                max = arr[i];
                 index = i+1;
             }
         }
