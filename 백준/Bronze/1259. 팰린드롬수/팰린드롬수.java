@@ -1,44 +1,32 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+// 팰린드롬수
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        while (true)
-        {
-            int a = scanner.nextInt();
-            if (a == 0)
-                break;
-            if (a < 10)
-                System.out.println("yes");
-            else if (a < 100)
-            {
-                if (a / 10 == a % 10)
-                    System.out.println("yes");
-                else
-                    System.out.println("no");
+        while (true) {
+            char[] inputChar = br.readLine().toCharArray();
+            int length = inputChar.length;
+            if (inputChar[0] == '0') break;
+            boolean answer = true;
+
+            // 앞에서부터 반, 뒤에서부터 반 가져와서 비교
+            for (int i = 0; i < length/2; i++) {
+                if (inputChar[length-i-1] != inputChar[i]) {
+                    answer = false;
+                }
             }
-            else if (a < 1000)
-            {
-                if (a / 100 == a % 10)
-                    System.out.println("yes");
-                else
-                    System.out.println("no");
-            }
-            else if (a < 10000)
-            {
-                if (a / 1000 == a % 10 && (a % 1000) / 100 == (a % 100) / 10)
-                    System.out.println("yes");
-                else
-                    System.out.println("no");
-            }
-            else if (a < 100000)
-            {
-                if (a / 10000 == a % 10 && (a % 10000) / 1000 == (a % 100) / 10)
-                    System.out.println("yes");
-                else
-                    System.out.println("no");
+
+            if (answer) {
+                sb.append("yes\n");
+            } else {
+                sb.append("no\n");
             }
         }
+        System.out.println(sb);
     }
 }
