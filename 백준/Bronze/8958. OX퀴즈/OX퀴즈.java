@@ -14,11 +14,10 @@ public class Main {
         for (int i=0; i<cases; i++) {
             inputs[i] = br.readLine();
         }
-
-        int plusScore = 0; // 얼마나 더할지
-        int sum = 0; // 전체 합산
-
+        
         for (int i=0; i<cases; i++) {
+            int plusScore = 0; // 얼마나 더할지
+            int sum = 0; // 전체 합산
             for(int j=0; j<inputs[i].length(); j++) {
                 char ox = inputs[i].charAt(j);
 
@@ -30,8 +29,6 @@ public class Main {
                 }
             }
             System.out.println(sum);
-            plusScore=0;
-            sum = 0;
         }
     }
 }
