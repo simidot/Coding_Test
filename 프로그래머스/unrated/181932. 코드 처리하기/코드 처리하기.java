@@ -3,21 +3,21 @@ class Solution {
         String answer = "";
         StringBuilder ret = new StringBuilder();
 
-        char[] codeChar = code.toCharArray();
         int mode = 0;
 
         // code를 읽으며 code[idx]가 1이면 mode변환
-        for (int i=0; i<codeChar.length; i++) {
-            if (codeChar[i] == '1') {
+        for (int i=0; i<code.length(); i++) {
+            char letter = code.charAt(i);
+            if (letter == '1') {
                 if (mode==0) mode= 1;
                 else mode=0;
             }
             else {
                 if (mode==0 && i%2==0) {
-                    ret.append(codeChar[i]);
+                    ret.append(letter);
                 }
                 else if (mode==1 && i%2==1) {
-                    ret.append(codeChar[i]);
+                    ret.append(letter);
                 }
             }
         }
