@@ -59,7 +59,7 @@ public class Main {
             }
 
             // 다음 바이러스 감염 가능성이 있는 컴퓨터를 스택에 push
-            for (int i=computers; i>=0; i--) {
+            for (int i=1; i<=computers; i++) {
                 // 만약 이미 감염되었으면 추가X
                 if (infected[i]) continue;
                 if (map[next][i]==1) { // 만약 next와 연결된 컴퓨터가 있다면 스택에 push
