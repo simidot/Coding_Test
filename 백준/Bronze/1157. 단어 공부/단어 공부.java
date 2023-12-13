@@ -8,21 +8,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         char[] input = br.readLine().toUpperCase().toCharArray();
-        Arrays.sort(input); //일단 정렬...?
 
-        int[] count = new int[91];
+        int[] count = new int[26];
         // 가장 많이 사용된 알파벳을 대문자로 출력.
         // 아스키코드로 표현하면 A는 65 Z는 90
         for(int i=0; i<input.length; i++) {
-            count[input[i]]++;
+            count[input[i]-65]++;
         }
         // 여러개면 ? 출력
         int max = count[0];
-        char answer = ' ';
+        char answer = 'A';
         for(int i=1; i<count.length; i++) {
             if(count[i] > max) {
                 max = count[i];
-                answer = (char)i;
+                answer = (char)(i+65);
             } else if (count[i]==max) {
                 answer = '?';
             }
