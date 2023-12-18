@@ -9,9 +9,10 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         br.close();
 
+        StringBuffer sb = new StringBuffer();
         for (int i=1; i<=N; i++) {
-            System.out.println(i);
+            sb.append(i+"\n");
         }
+        System.out.println(sb);
     }
-
 }
