@@ -2,37 +2,52 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
 
 // 나이순 정렬 실버5
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 온라인 저지 회원의 수 N
         int N = Integer.parseInt(br.readLine());
 
-        String[][] members = new String[N][2];
-        // 각 회원의 나이와 이름이 주어짐.
+        Person[] people = new Person[N];
         for (int i=0; i<N; i++) {
-            String[] inputs = br.readLine().split(" ");
+            StringTokenizer st = new StringTokenizer(br.readLine()); // 입력을 받으면
+            int age = Integer.parseInt(st.nextToken()); // 나이와
+            String name = st.nextToken(); // 이름으로 분류하여
+            people[i] = new Person(age, name); // Person 객체를 만들어 배열에 넣는다.
+        }
 
-            members[i][0] = inputs[0];
-            members[i][1] = inputs[1];
-        } // 멤버정보 입력 완료
-
-        // 출력은 나이순, 나이가 같으면 가입한 순으로 한 줄에 한명식 나이와 이름을 공백으로 구분해 출력.
-        Arrays.sort(members, (o1, o2) -> {
-            if (o1[0] == o2[0]) {
-                return o1[1].compareTo(o2[1]);
-            } else {
-                return Integer.parseInt(o1[0]) - Integer.parseInt(o2[0]);
+        // 정렬과정
+        Arrays.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                    return o1.age - o2.age;
             }
         });
 
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<N; i++) {
-            sb.append(members[i][0]+" "+members[i][1]+"\n");
+            sb.append(people[i]);
         }
         System.out.println(sb);
+
+    }
+
+    // 배열을 사용하지 않고 클래스 객체를 만들어 배열처럼 사용 가능.
+    public static class Person {
+        int age;
+        String name;
+
+        public Person(int age, String name) {
+            this.age = age;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return age+" "+name+"\n";
+        } // 반환시 형태를 정해줄 수 있다.
     }
 }
-
