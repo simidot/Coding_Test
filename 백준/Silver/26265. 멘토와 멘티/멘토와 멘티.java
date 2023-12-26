@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
 
 // 멘토와 멘티 실버5
 public class Main {
@@ -9,6 +9,20 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
+        List<Pairs> pairs = new ArrayList<>();
+        for(int i=0; i<N;i++) {
+            String[] inputString = br.readLine().split(" ");
+            pairs.add(new Pairs(inputString[0], inputString[1]));
+        }
+
+        Collections.sort(pairs, new Pairs());
+
+
+        StringBuffer sb = new StringBuffer();
+        for(int i=0; i<pairs.size(); i++) {
+            sb.append(pairs.get(i).mentor).append(" ").append(pairs.get(i).mentee).append("\n");
+        }
+        System.out.println(sb);
 
         // N = 멘토-멘티 순서쌍의 수
         // 목록의 정렬을 맡겼다.
@@ -17,27 +31,27 @@ public class Main {
         // 앞 멘토, 뒤 멘티
 
         // 멘토 배열과 멘티 배열로 받는다.
+    }
+    
+    public static class Pairs implements Comparator<Pairs> {
+        private String mentor;
+        private String mentee;
 
-        String[][] pairs = new String[N][2];
-
-        for(int i=0; i<N; i++) {
-            String[] inputString = br.readLine().split(" ");
-            pairs[i][0] = inputString[0];
-            pairs[i][1] = inputString[1];
+        public Pairs() {
         }
 
-        Arrays.sort(pairs, (o1, o2) -> {
-            if (o1[0].compareTo(o2[0])==0) {
-                return o2[1].compareTo(o1[1]);
+        public Pairs(String mentor, String mentee) {
+            this.mentor = mentor;
+            this.mentee = mentee;
+        }
+
+        @Override
+        public int compare(Pairs o1, Pairs o2) {
+            if (o1.mentor.equals(o2.mentor)) {
+                return o2.mentee.compareTo(o1.mentee);
             } else {
-                return o1[0].compareTo(o2[0]);
+                return o1.mentor.compareTo(o2.mentor);
             }
-        });
-        StringBuffer sb = new StringBuffer();
-        for(int i=0; i<N; i++) {
-            sb.append(pairs[i][0] + " " + pairs[i][1]+"\n");
         }
-        System.out.println(sb);
-
     }
 }
