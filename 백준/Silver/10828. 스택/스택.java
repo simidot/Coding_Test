@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 //스택 실버4
 public class Main {
@@ -11,15 +12,13 @@ public class Main {
         int num = 0;
         Stack<Integer> stack = new Stack<>();
 
-        for(int i=0; i<N;i++) {
-            String[] inputs = br.readLine().split(" ");
-            if(inputs.length >1) {
-                num = Integer.parseInt(inputs[1]);
-            }
 
-            switch (inputs[0]) {
+        for(int i=0; i<N;i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            switch (st.nextToken()) {
                 case "push":
-                    stack.push(num);
+                    stack.push(Integer.parseInt(st.nextToken()));
                     break;
                 case "pop":
                     if(stack.isEmpty()) {
@@ -47,8 +46,6 @@ public class Main {
                     break;
             }
         }
-
-
         //명령 처리 프로그램
         // push X : 스택에 X 넣기
         // pop : 스택에서 pop, 없는 경우 -1
