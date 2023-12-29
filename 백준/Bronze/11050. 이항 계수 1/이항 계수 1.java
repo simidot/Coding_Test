@@ -5,22 +5,24 @@ import java.util.StringTokenizer;
 
 //이항계수1 브론즈1
 public class Main {
+    private static int[][] dp;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        int[][] dp = new int[11][11];
-        for(int i=0; i<dp.length; i++) {
-            dp[i][0] = 1; //r==0
-            dp[i][i] = 1; //n==r
+        dp = new int[N + 1][K + 1];
+        System.out.println(BC(N,K));
+    }
+    public static int BC(int n, int k) {
+        if (dp[n][k]>0) {
+            return dp[n][k];
         }
-        for(int i=1; i<11; i++) {
-            for(int j=1; j<11; j++) {
-                dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
-            }
+        if (k==0|n==k) {
+            return dp[n][k] = 1;
+        } else {
+            return dp[n][k] = BC(n - 1, k - 1) + BC(n - 1, k);
         }
-        System.out.println(dp[N][K]);
     }
 }
