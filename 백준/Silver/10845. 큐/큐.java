@@ -12,6 +12,7 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
 
         Deque<Integer> queue = new LinkedList<>();
+        StringBuffer sb = new StringBuffer();
 
         for(int i=0; i<N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -23,37 +24,22 @@ public class Main {
                     queue.offer(num);
                     break;
                 case "front":
-                    if (queue.isEmpty()) {
-                        System.out.println("-1");
-                    } else {
-                        System.out.println(queue.peekFirst());
-                    }
+                    sb.append(queue.isEmpty() ? "-1" : queue.peekFirst()).append("\n");
                     break;
                 case "back":
-                    if (queue.isEmpty()) {
-                        System.out.println("-1");
-                    } else {
-                        System.out.println(queue.peekLast());
-                    }
+                    sb.append(queue.isEmpty() ? "-1" : queue.peekLast()).append("\n");
                     break;
                 case "pop":
-                    if(queue.isEmpty()) {
-                        System.out.println("-1");
-                    } else {
-                        System.out.println(queue.pollFirst());
-                    }
+                    sb.append(queue.isEmpty() ? "-1" : queue.pollFirst()).append("\n");
                     break;
                 case "size":
-                    System.out.println(queue.size());
+                    sb.append(queue.size()).append("\n");
                     break;
                 case "empty":
-                    if (queue.isEmpty()) {
-                        System.out.println("1");
-                    } else {
-                        System.out.println("0");
-                    }
+                    sb.append(queue.isEmpty() ? "1" : "0").append("\n");
                     break;
             }
         }
+        System.out.println(sb);
     }
 }
