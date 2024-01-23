@@ -3,8 +3,6 @@ import java.util.LinkedList;
 
 class Solution {
     public int[] solution(int[] numbers, String direction) {
-        int[] answer = new int[numbers.length];
-
         Deque<Integer> deque = new LinkedList<>();
         // 배열 numbers의 원소를 direction 방향으로 한 칸씩 회전시킨 배열을 return.
         for (int i = 0; i < numbers.length; i++) {
@@ -15,9 +13,7 @@ class Solution {
         } else {
             deque.offerLast(deque.pollFirst());
         }
-        for (int i = 0; i < numbers.length; i++) {
-            answer[i] = deque.pollFirst();
-        }
-        return answer;
+
+        return deque.stream().mapToInt(Integer::intValue).toArray();
     }
 }
