@@ -7,23 +7,31 @@ import java.util.StringTokenizer;
 // 정렬
 // ATM 실버 4
 public class Main {
-    public static void main(String[] args) throws IOException {
-        // 1. ATM 앞에 줄서있는 사람들 N명
-        // 2. 각 사람이 돈을 인출하는데 걸리는 시간 P
-        // = 각 사람이 돈을 인출하는데 필요한 시간의 합의 최솟값을 구한다.
-
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-
-        int[] people = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
+
+        // 입력 범위는 1~1000이므로 1001개의 index
+        int[] arr = new int[1001];
+
         for (int i = 0; i < N; i++) {
-            people[i] = Integer.parseInt(st.nextToken());
+            arr[Integer.parseInt(st.nextToken())]++;
         }
-        Arrays.sort(people);
+
+        br.close();
+        // int[] arr = {0, 1, 1, 2, 1, ...}
+
+        int prev = 0;
         int sum = 0;
-        for (int i = 0; i < people.length; i++) {
-            sum += people[i] * (people.length - i);
+
+        // counting sort
+        for (int i = 0; i < 1001; i++) {
+            while (arr[i] != 0) {
+                sum += (i + prev);
+                prev +=i;
+                arr[i]--;
+            }
         }
         System.out.println(sum);
     }
