@@ -11,15 +11,18 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int[] arrays = new int[N];
+        int[] countSort = new int[10001];
+
         for (int i = 0; i < N; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            arrays[i] = Integer.parseInt(st.nextToken());
+            countSort[Integer.parseInt(br.readLine())]++;
         }
-        Arrays.sort(arrays);
+
         StringBuffer sb = new StringBuffer();
-        for (int i : arrays) {
-            sb.append(i + "\n");
+        for (int i = 0; i < 10001; i++) {
+            while (countSort[i] != 0) {
+                sb.append(i).append("\n");
+                countSort[i]--;
+            }
         }
         System.out.println(sb);
     }
