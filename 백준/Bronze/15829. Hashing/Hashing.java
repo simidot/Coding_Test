@@ -8,16 +8,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int L = Integer.parseInt(br.readLine());
-        char[] inputs = br.readLine().toCharArray();
-        int[] ints = new int[L];
-        for (int i = 0; i < L; i++) {
-            ints[i] = inputs[i]-96;
-        }
 
-        int result = 0;
+        String s = br.readLine();
+        int M = 1234567891;
+        long r = 1;
+
+        long sum = 0;
         for (int i = 0; i < L; i++) {
-            result += ints[i] * Math.pow(31, i);
+            sum += (s.charAt(i)-96)*r;
+            r = (r*31) % M;
         }
-        System.out.println(result);
+        System.out.println(sum % M);
     }
 }
