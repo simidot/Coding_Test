@@ -13,17 +13,15 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         //666 - 1666- 2666 - 3666 - 4666 - 5666 - 6665 - 6666 - 6667 - 6668
-        List<String> number = new ArrayList<>();
-        int originalNum = 0;
-        while (originalNum++<2147483647) {
+        int originalNum = 666;
+        int count = 1;
+        while (N!=count) {
+            originalNum++;
             String digitNum = String.valueOf(originalNum);
             if (digitNum.contains("666")) {
-                number.add(digitNum);
-            }
-            if (number.size() == N) {
-                System.out.println(number.get(N - 1));
-                break;
+                count++;
             }
         }
+        System.out.println(originalNum);
     }
 }
